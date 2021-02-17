@@ -21,8 +21,18 @@ namespace Business.Concrete
         {
             //iş kodları
             //yetkisi var mı?
-
             return _productDal.GetAll();
+        }
+        
+        public List<Product> GetAllByCategoryId(int Id)
+        {
+            return _productDal.GetAll(p => p.CategoryId == Id);
+        }
+
+        //iki fiyat aralığında olan datayı getirecektir.
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= min && p.UnitPrice <= max);
         }
     }
 }
